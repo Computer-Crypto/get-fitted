@@ -1,0 +1,7 @@
+
+<div *ngIf="collection$ | async; let collection">
+    <h4> {{collection.name}} #{{tokenId}} </h4>
+    <img src="{{(image$ | async) | async}}" class="img-fluid" />
+</div>
+
+<canvas width="2048" height="2048" id="canvas" style="display:none"></canvas>

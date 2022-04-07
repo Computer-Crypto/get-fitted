@@ -2,7 +2,7 @@
 <div class="row">
     <div *ngFor="let collection of collections | async" class="col-md-6 col-lg-4"> 
         <div class="card text-center" >
-            <img src="{{ collection.image }}" alt="logo" class="img-fluid collection-logo" />
+            <img src="{{ collection.logo }}" alt="logo" class="img-fluid collection-logo" />
             <div class="card-body">
               <h5 class="card-title">{{ collection.name }}</h5>
             </div>

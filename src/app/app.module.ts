@@ -8,6 +8,7 @@ import { CollectionsComponent } from './collections/collections.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { FitsComponent } from './fits/fits.component';
 import { HomeComponent } from './home/home.component';
+import { CustomizeComponent } from './customize/customize.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HomeComponent } from './home/home.component';
     CollectionsComponent,
     WalletComponent,
     FitsComponent,
-    HomeComponent
+    HomeComponent,
+    CustomizeComponent
   ],
   imports: [
     BrowserModule,
