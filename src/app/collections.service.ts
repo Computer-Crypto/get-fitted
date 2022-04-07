@@ -23,7 +23,7 @@ export class CollectionsService {
         "alien-punk-things",
         "Alien Punk Things",
         "/assets/collections/alien-punk-things/logo.png",
-        "http://localhost:4200/assets/collections/alien-punk-things/images/")
+        "https://alienpunkthingsprod.blob.core.windows.net/images/")
     ]);
   }
 

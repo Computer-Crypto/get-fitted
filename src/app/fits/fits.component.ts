@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-fits',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FitsComponent implements OnInit {
 
-  constructor() { }
+  tokenId!: string;
+  collectionId!: string;
 
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.collectionId = params['collectionId'];
+      this.tokenId = params['tokenId'];
+    });
   }
-
 }

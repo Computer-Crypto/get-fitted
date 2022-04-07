@@ -9,6 +9,7 @@ import { WalletComponent } from './wallet/wallet.component';
 import { FitsComponent } from './fits/fits.component';
 import { HomeComponent } from './home/home.component';
 import { CustomizeComponent } from './customize/customize.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CustomizeComponent } from './customize/customize.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

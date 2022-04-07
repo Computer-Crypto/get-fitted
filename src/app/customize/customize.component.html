@@ -1,7 +1,30 @@
 
 <div *ngIf="collection$ | async; let collection">
     <h4> {{collection.name}} #{{tokenId}} </h4>
-    <img src="{{(image$ | async) | async}}" class="img-fluid" />
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{{(image$ | async)}}" class="img-fluid" />
+        </div>
+        <div class="col-md-3 mt-3">
+            <h6>Hats</h6>
+            <select [(ngModel)]="headImage" (change)="onHeadImageChange()" class="form-select">
+                <option value="">None</option>
+                <option value="/assets/collections/alien-punk-things/fits/hats/cowboy-hat.png">Cowboy Hat</option>
+                <option value="/assets/collections/alien-punk-things/fits/hats/beanie.png">Beanie</option>
+                <option value="/assets/collections/alien-punk-things/fits/hats/cap.png">Cap</option>
+                <option value="/assets/collections/alien-punk-things/fits/hats/drink-hat.png">Drink Hat</option>
+            </select>
+        </div>
+        <div class="col-md-3 mt-3">
+            <h6>Shirts</h6>
+            <select [(ngModel)]="shirtImage" (change)="onShirtImageChange()" class="form-select">
+                <option value="">None</option>
+                <option value="/assets/collections/alien-punk-things/fits/shirts/pink-suit.png">Pink Suit</option>
+                <option value="/assets/collections/alien-punk-things/fits/shirts/shirt-with-collar.png">Shirt with Collar</option>
+                <option value="/assets/collections/alien-punk-things/fits/shirts/blue-collar-shirt.png">Blue Collar Shirt</option>
+            </select>
+        </div>
+    </div>
 </div>
 
 <canvas width="2048" height="2048" id="canvas" style="display:none"></canvas>

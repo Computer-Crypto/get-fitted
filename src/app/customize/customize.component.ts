@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, Subject } from 'rxjs';
 import { CollectionsService } from '../collections.service';
 import { FitsService } from '../fits.service';
 import Collection from '../models/collection';
@@ -18,8 +18,12 @@ export class CustomizeComponent implements OnInit {
   tokenId!: string;
 
   collection$!: Observable<Collection>;
-
+  headImages$!: BehaviorSubject<string>;
+  shirtImages$!: BehaviorSubject<string>;
   image$!: Observable<Promise<string>>;
+
+  headImage: string = "";
+  shirtImage: string = "";
   
   constructor(
     private collectionService: CollectionsService,
@@ -28,13 +32,26 @@ export class CustomizeComponent implements OnInit {
 
   async ngOnInit() {
     this.collection$ = this.collectionService.getCollection(this.collectionId);
+    
+    this.headImages$ = new BehaviorSubject<string>("");
+    this.shirtImages$ = new BehaviorSubject<string>("");
 
     this.image$ = await this.fitsService.customizeFit(
       this.collection$.pipe(
         map(collection => {
           return collection.baseImageUri + this.tokenId + ".png";
         })
-      ), of("http://localhost:4200/assets/collections/alien-punk-things/fits/head/beanie.png")
+      ), 
+      this.headImages$,
+      this.shirtImages$
     )
+  }
+
+  onHeadImageChange() {
+    this.headImages$.next(this.headImage);
+  }
+
+  onShirtImageChange() {
+    this.shirtImages$.next(this.shirtImage);
   }
 }

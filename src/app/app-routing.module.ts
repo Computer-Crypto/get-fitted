@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'collections', component: CollectionsComponent },
   { path: 'wallet', component: WalletComponent },
-  { path: 'fits', component: FitsComponent }
+  { path: 'fits/:collectionId/:tokenId', component: FitsComponent }
 ];
 
 @NgModule({

@@ -1,29 +1,42 @@
-import { Inject, Injectable } from '@angular/core';
-import { loadImage, Canvas } from 'canvas';
-import { combineLatest, map, Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { loadImage } from 'canvas';
+import { combineLatest, concatMap, map, Observable } from 'rxjs';
 import mergeImages from 'merge-images';
-import { DOCUMENT } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FitsService {
 
-  constructor(@Inject(DOCUMENT) private document: Document) { }
+  constructor() { }
 
-
-  async customizeFit(nftImageUrl$:Observable<string>, headImageUrl$: Observable<string>) {
-    return combineLatest([nftImageUrl$, headImageUrl$]).pipe(
-      map(async ([nftImageUrl, headImageUrl]) => {
-        var nftImage = await loadImage(nftImageUrl) as any;
-        var headImage = await loadImage(headImageUrl) as any;
+  async customizeFit(
+    nftImageUrl$: Observable<string>,
+    headImageUrl$: Observable<string>,
+    shirtImageUrl$: Observable<string>) {
+    return combineLatest([nftImageUrl$, headImageUrl$, shirtImageUrl$]).pipe(
+      concatMap(async ([nftImageUrl, headImageUrl, shirtImageUrl]) => {
+        
+        var nftImage = await loadImage(nftImageUrl, { crossOrigin: "anonymous" }) as any;
+        
         const canvas = document.createElement('canvas') as any;
         canvas.height = nftImage.height;
         canvas.width = nftImage.width;
+        
         var ctx = canvas.getContext("2d");
         ctx?.drawImage(nftImage, 0, 0);
-        ctx?.drawImage(headImage, 0, 0);
-        return canvas.toDataURL();
+
+        if(headImageUrl) {
+          var headImage = await loadImage(headImageUrl);
+          ctx?.drawImage(headImage, 0, 0);
+        }
+
+        if(shirtImageUrl) {
+          var shirtImage = await loadImage(shirtImageUrl);
+          ctx?.drawImage(shirtImage, 0, 0);
+        }
+        
+        return canvas.toDataURL("image/png");
       })
     );
   }
