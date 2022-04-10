@@ -1,4 +1,6 @@
-class Collection {
+import { Observable } from "rxjs";
+
+export abstract class Collection {
 
     constructor(id:string, name:string, logo:string, baseImageUri:string) {
         this.id = id;
@@ -11,6 +13,8 @@ class Collection {
     public name: string;
     public logo: string;
     public baseImageUri: string;
-}
 
-export default Collection;
+    abstract getTokenImageUrl(tokenId: number): string;
+    abstract getTokensForWallet(address: string): Observable<string[]>;
+    abstract getCollectionSize(): number;
+}

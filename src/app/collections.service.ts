@@ -1,29 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
-import Collection from './models/collection';
+import { AlienPunkThings } from './collection-integrations/alien-punk-things';
+import { Collection } from './collection-integrations/base-collection';
+import { BoredApeYachtClub } from './collection-integrations/bored-ape-yacht-club';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CollectionsService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   // Collections will be hard coded in this service for now. 
   // May need to move it to a backeend API at some point
   getCollections(): Observable<Collection[]> {
     return of([
-      new Collection(
-        "bored-ape-yacht-club",
-        "Bored Ape Yacht Club", 
-        "/assets/collections/bored-ape-yacht-club/logo.png",
-        ""
-      ),
-      new Collection(
-        "alien-punk-things",
-        "Alien Punk Things",
-        "/assets/collections/alien-punk-things/logo.png",
-        "https://alienpunkthingsprod.blob.core.windows.net/images/")
+      new BoredApeYachtClub(this.http),
+      new AlienPunkThings(this.http)
     ]);
   }
 

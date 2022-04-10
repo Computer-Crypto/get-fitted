@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { loadImage } from 'canvas';
 import { combineLatest, concatMap, map, Observable } from 'rxjs';
-import mergeImages from 'merge-images';
+import mergeImages from 'merge-images'; // Don't remove this
 
 @Injectable({
   providedIn: 'root'
