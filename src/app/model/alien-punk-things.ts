@@ -27,9 +27,6 @@ export class AlienPunkThings extends Collection {
           variants: [{
             name: "Cowboy Hat",
             url: "/assets/collections/alien-punk-things/fits/hats/cowboy-hat.png"
-          },{
-            name: "Cowboy Hat 2",
-            url: "/assets/collections/alien-punk-things/fits/hats/cowboy-hat.png"
           }]
         },{
           name: "Beanie",
@@ -69,6 +66,24 @@ export class AlienPunkThings extends Collection {
           variants: [{
             name: "Blue Collar Shirt",
             url: "/assets/collections/alien-punk-things/fits/shirts/blue-collar-shirt.png"
+          }]
+        },{
+          name: "Hoodie",
+          variants: [{
+            name:"Green",
+            url:"/assets/collections/alien-punk-things/fits/shirts/apt-hoodie/green.png"
+          },{
+            name:"Blue",
+            url:"/assets/collections/alien-punk-things/fits/shirts/apt-hoodie/blue.png"
+          },{
+            name:"Pink",
+            url:"/assets/collections/alien-punk-things/fits/shirts/apt-hoodie/pink.png"
+          },{
+            name:"Purple",
+            url:"/assets/collections/alien-punk-things/fits/shirts/apt-hoodie/purple.png"
+          },{
+            name:"Red",
+            url:"/assets/collections/alien-punk-things/fits/shirts/apt-hoodie/red.png"
           }]
         }]
       }]
