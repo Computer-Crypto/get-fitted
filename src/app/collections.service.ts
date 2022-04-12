@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
-import { AlienPunkThings } from './collection-integrations/alien-punk-things';
-import { Collection } from './collection-integrations/base-collection';
-import { BoredApeYachtClub } from './collection-integrations/bored-ape-yacht-club';
+import { AlienPunkThings } from './model/alien-punk-things';
+import { Collection } from './model/base-collection';
+import { BoredApeYachtClub } from './model/bored-ape-yacht-club';
 
 @Injectable({
   providedIn: 'root'

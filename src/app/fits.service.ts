@@ -12,11 +12,10 @@ export class FitsService {
 
   async customizeFit(
     nftImageUrl$: Observable<string>,
-    headImageUrl$: Observable<string>,
-    shirtImageUrl$: Observable<string>) {
-    return combineLatest([nftImageUrl$, headImageUrl$, shirtImageUrl$]).pipe(
-      concatMap(async ([nftImageUrl, headImageUrl, shirtImageUrl]) => {
-        
+    fitImageUrls$: Observable<string[]>) {
+    return combineLatest([nftImageUrl$, fitImageUrls$]).pipe(
+      concatMap(async ([nftImageUrl, fitImageUrls]) => {
+
         var nftImage = await loadImage(nftImageUrl, { crossOrigin: "anonymous" }) as any;
         
         const canvas = document.createElement('canvas') as any;
@@ -26,14 +25,14 @@ export class FitsService {
         var ctx = canvas.getContext("2d");
         ctx?.drawImage(nftImage, 0, 0);
 
-        if(headImageUrl) {
-          var headImage = await loadImage(headImageUrl);
-          ctx?.drawImage(headImage, 0, 0);
-        }
-
-        if(shirtImageUrl) {
-          var shirtImage = await loadImage(shirtImageUrl);
-          ctx?.drawImage(shirtImage, 0, 0);
+        if(fitImageUrls) {
+          for(let x = 0; x < fitImageUrls.length; x++) {
+            const imageUrl = fitImageUrls[x];
+            if(imageUrl) {
+              const image = await loadImage(imageUrl);
+              ctx?.drawImage(image, 0, 0);
+            }
+          }
         }
         
         return canvas.toDataURL("image/png");

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Collection } from '../collection-integrations/base-collection';
+import { Collection } from '../model/base-collection';
 import { CollectionsService } from '../collections.service';
 
 @Component({

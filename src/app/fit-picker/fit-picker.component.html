@@ -1,0 +1,15 @@
+
+<h6>{{fitGroup.name}}</h6>
+
+<select [(ngModel)]="selectedFit" (ngModelChange)="onFitChange()">
+    <option [ngValue]="null">None</option>
+    <option *ngFor="let fit of fitGroup.fits" [ngValue]="fit">{{ fit.name }}</option>
+</select>
+
+<select 
+    [(ngModel)]="selectedVariant" 
+    *ngIf="selectedFit && selectedFit.variants && selectedFit.variants.length > 1"
+    (ngModelChange)="onVariantChange()">
+    <option [ngValue]="null">None</option>
+    <option *ngFor="let variant of selectedFit?.variants" [ngValue]="variant">{{ variant.name }}</option>
+</select>

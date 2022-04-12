@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, map, Observable, of, Subject } from 'rxjs';
-import { Collection } from '../collection-integrations/base-collection';
+import { BehaviorSubject, map, Observable, of, Subject, tap } from 'rxjs';
+import { Collection } from '../model/base-collection';
 import { CollectionsService } from '../collections.service';
 import { FitsService } from '../fits.service';
+import { FitUrlChangedEvent } from '../fit-picker/fit-picker.component';
 
 @Component({
   selector: 'app-fits',
@@ -14,14 +15,12 @@ export class FitsComponent implements OnInit {
 
   collectionId!: string;
   tokenId!: string;
-
+  
   collection$!: Observable<Collection>;
-  headImages$!: BehaviorSubject<string>;
-  shirtImages$!: BehaviorSubject<string>;
   image$!: Observable<Promise<string>>;
+  fitImageUrls$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
-  headImage: string = "";
-  shirtImage: string = "";
+  selectedFits: any = {};
   
   constructor(
     private collectionService: CollectionsService,
@@ -30,33 +29,25 @@ export class FitsComponent implements OnInit {
   }
 
   async ngOnInit() {
-
     this.route.params.subscribe(async params => {
       this.collectionId = params["collectionId"];
       this.tokenId = params["tokenId"];
 
       this.collection$ = this.collectionService.getCollection(this.collectionId);
 
-      this.headImages$ = new BehaviorSubject<string>("");
-      this.shirtImages$ = new BehaviorSubject<string>("");
-
       this.image$ = await this.fitsService.customizeFit(
         this.collection$.pipe(
           map(collection => {
             return collection.getTokenImageUrl(parseInt(this.tokenId))
           })
-        ), 
-        this.headImages$,
-        this.shirtImages$
+        ),
+        this.fitImageUrls$
       )
     });
   }
 
-  onHeadImageChange() {
-    this.headImages$.next(this.headImage);
-  }
-
-  onShirtImageChange() {
-    this.shirtImages$.next(this.shirtImage);
+  onFitUrlChange(event: FitUrlChangedEvent) {
+    this.selectedFits[event.fitGroupName] = event.url;
+    this.fitImageUrls$.next(Object.values(this.selectedFits));
   }
 }

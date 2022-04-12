@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, of, switchMap } from 'rxjs';
-import { Collection } from '../collection-integrations/base-collection';
+import { Collection } from '../model/base-collection';
 import { CollectionsService } from '../collections.service';
 
 const FILTER_PAG_REGEX = /[^0-9]/g;

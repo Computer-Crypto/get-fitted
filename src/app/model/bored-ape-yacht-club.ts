@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Collection } from './base-collection';
+import { FitGroup } from './fit';
 
 export class BoredApeYachtClub extends Collection {
     
@@ -9,7 +10,8 @@ export class BoredApeYachtClub extends Collection {
             "bored-ape-yacht-club",
             "Bored Ape Yacht Club", 
             "/assets/collections/bored-ape-yacht-club/logo.png",
-            ""
+            "",
+            []
         );
     }
 
@@ -23,5 +25,9 @@ export class BoredApeYachtClub extends Collection {
 
     getCollectionSize(): number {
         return 10000;
+    }
+
+    getFits(): FitGroup[] {
+        throw new Error('Method not implemented.');
     }
 }
