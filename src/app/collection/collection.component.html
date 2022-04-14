@@ -1,8 +1,18 @@
 <div *ngIf="collection$ | async; let collection">
-    <h1>{{ collection.name }}</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>{{ collection.name }}</h1>
+        </div>   
+        <div class="col-md-6 mb-1">
+            <div class="float-md-end">
+                <input type="text" placeholder="Token ID" class="form-control d-inline lookup mx-1" [(ngModel)]="lookupTokenId" (keyup.enter)="lookup()" />
+                <button type="button" class="btn btn-primary d-inline lookup-btn" (click)="lookup()">Lookup</button>    
+            </div> 
+        </div>
+    </div>
     <div class="row">
         <div class="col-xl-2 col-lg-3 col-md-4 col-6 mb-3 text-center" *ngFor="let tokenId of getTokenIds(collection) | slice: (page-1) * pageSize : page * pageSize">
-            <a href="/collections/{{collection.id}}/nfts/{{tokenId}}/fits" class="text-decoration-none">
+            <a routerLink="/collections/{{collection.id}}/nfts/{{tokenId}}/fits" class="text-decoration-none">
                 <img src="{{collection.getTokenImageUrl(tokenId)}}" class="img-fluid w-100 border border-3 border-primary rounded-3" />
                 {{tokenId}}
             </a>
@@ -13,26 +23,26 @@
         <ngb-pagination [collectionSize]="getTokenIds(collection).length" [(page)]="page" [pageSize]="pageSize" [boundaryLinks]="true">
             <ng-template ngbPaginationPages let-page let-pages="pages">
                 <li class="ngb-custom-pages-item" *ngIf="pages.length > 0">
-                    <div class="mb-3 d-flex flex-nowrap px-2">
+                    <div class="mb-3 d-flex flex-nowrap px-1">
                     <label
                         id="paginationInputLabel"
                         for="paginationInput"
-                        class="col-form-label me-2 ms-1"
+                        class="col-form-label me-1 ms-1"
                     >Page</label>
                     <input #i
                         type="text"
                         inputmode="numeric"
                         pattern="[0-9]*"
-                        class="form-control custom-pages-input"
+                        class="form-control"
                         id="paginationInput"
                         [value]="page"
                         (keyup.enter)="selectPage(i.value)"
                         (blur)="selectPage(i.value)"
                         (input)="formatInput($any($event).target)"
                         aria-labelledby="paginationInputLabel paginationDescription"
-                        style="width: 5rem; text-align: center;"
+                        style="width: 4.5rem; text-align: center;"
                     />
-                    <span id="paginationDescription" class="col-form-label text-nowrap px-2">
+                    <span id="paginationDescription" class="col-form-label text-nowrap px-1">
                         of {{pages.length}}</span>
                     </div>
                 </li>

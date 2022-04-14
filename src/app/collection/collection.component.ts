@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map, Observable, of, switchMap } from 'rxjs';
 import { Collection } from '../model/base-collection';
 import { CollectionsService } from '../collections.service';
@@ -17,10 +17,12 @@ export class CollectionComponent implements OnInit {
   collection$!: Observable<Collection>;
   page: number = 1;
   pageSize: number = 24;
+  lookupTokenId: string = "";
 
   constructor(
     private collectionsService: CollectionsService, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -40,5 +42,11 @@ export class CollectionComponent implements OnInit {
 
   selectPage(page: string) {
     this.page = parseInt(page, 10) || 1;
+  }
+
+  lookup() {
+    if(this.lookupTokenId && parseInt(this.lookupTokenId)) {
+      this.router.navigateByUrl(`/collections/${this.collectionId}/nfts/${this.lookupTokenId}/fits`);
+    }
   }
 }

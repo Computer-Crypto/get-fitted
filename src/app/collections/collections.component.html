@@ -2,9 +2,9 @@
 <div class="row">
     <div *ngFor="let collection of collections | async" class="col-md-6 col-lg-4 mb-3 align-items-stretch"> 
       <div class="card text-center" >
-        <a href="/collections/{{collection.id}}" class="text-decoration-none">
+        <a routerLink="/collections/{{collection.id}}" class="text-decoration-none">
           <div class="card-body">
-            <img src="{{ collection.logo }}" alt="logo" class="img-fluid collection-logo m-3" />
+            <img src="{{ collection.logo }}" alt="logo" class="img-fluid collection-logo my-3" />
             <h5 class="card-title">{{ collection.name }}</h5>
           </div>
         </a>

@@ -1,15 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
-    <a class="navbar-brand" href="/">Get Fitted</a>
+    <a class="navbar-brand" routerLink="/">Get Fitted</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto text-align-right">
-        <a class="nav-link"  href="/collections">Collections</a>
-        <a class="nav-link" href="/wallet">Wallet</a>
+        <a class="nav-link" routerLink="/collections">Collections</a>
+        <!-- <a class="nav-link" routerLink="/wallet">Wallet</a> -->
         <!-- <a class="nav-link" href="/fits">Fits</a> -->
-        <a class="btn btn-info ms-lg-4">Connect Wallet</a>
+        <a class="btn btn-info ms-lg-4" (click)="connectWallet()" *ngIf="!currentAccount">Connect Wallet</a>
+        <a class="btn btn-info ms-lg-4" (click)="connectWallet()" *ngIf="currentAccount">{{currentAccount.substring(0, 8)}}</a>
       </div>
     </div>
   </div>
@@ -18,3 +19,14 @@
 <div class="container ">
   <router-outlet></router-outlet>
 </div>
+
+<footer class="text-center mt-3 mb-4">
+  <p>
+    <a href="https://alienpunkthings.com/" class="text-decoration-none">Made with ❤️ by the Alien Punk Things community</a>
+  </p>
+  <p>
+    <a href="https://twitter.com/AlienPunkThings" class="text-decoration-none">Twitter</a> 
+    | <a href="" class="text-decoration-none">Discord</a> 
+    | <a href="https://github.com/Computer-Crypto/get-fitted" class="text-decoration-none">GitHub</a>
+  </p>
+</footer>
