@@ -18,6 +18,6 @@ export abstract class Collection {
     public fitGroups: FitGroup[]
 
     abstract getTokenImageUrl(tokenId: number): string;
-    abstract getTokensForWallet(address: string): Observable<string[]>;
+    abstract getTokensForWallet(address: string): Observable<number[]>;
     abstract getCollectionSize(): number;
 }

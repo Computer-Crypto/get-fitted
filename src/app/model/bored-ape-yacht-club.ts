@@ -19,7 +19,7 @@ export class BoredApeYachtClub extends Collection {
         return `https://nftoutfits.blob.core.windows.net/bayc/images/${tokenId}.png`;
     }
 
-    getTokensForWallet(address: string): Observable<string[]> {
+    getTokensForWallet(address: string): Observable<number[]> {
         throw new Error('Method not implemented.');
     }
 

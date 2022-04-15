@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { CollectionComponent } from './collection/collection.component';
 import { CollectionsComponent } from './collections/collections.component';
 import { FitsComponent } from './fits/fits.component';
-import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: '', component: CollectionsComponent },

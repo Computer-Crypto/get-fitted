@@ -93,8 +93,8 @@ export class AlienPunkThings extends Collection {
   getTokenImageUrl(tokenId: number): string {
     return `https://alienpunkthingsprod.blob.core.windows.net/images/${tokenId}.png`;
   }
-  getTokensForWallet(address: string): Observable<string[]> {
-    return this.http.get<string[]>(`${contract.apiUrl}/api/get-by-owner?address=${address}`);
+  getTokensForWallet(address: string): Observable<number[]> {
+    return this.http.get<number[]>(`${contract.apiUrl}/api/get-by-owner?address=${address}`);
   }
   getCollectionSize(): number {
     return 8888;

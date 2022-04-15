@@ -18,6 +18,8 @@ export class AppComponent {
   }
 
   async connectWallet() {
-    await this.walletService.connectWallet();
+    if(!this.currentAccount) {
+      await this.walletService.connectWallet();
+    }
   }
 }
