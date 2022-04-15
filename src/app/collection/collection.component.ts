@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, combineLatest, from, map, Observable, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable, of, shareReplay, switchMap, tap } from 'rxjs';
 import { Collection } from '../model/base-collection';
 import { CollectionsService } from '../collections.service';
 import WalletService from '../wallet.service';
@@ -23,6 +23,8 @@ export class CollectionComponent implements OnInit {
   currentAccount: string = "";
   onlyShowMine$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   tokenIds$: Observable<number[]> = of([]);
+  tokenIdsForWallet$!: Observable<number[]>;
+  tokenIdsForCollection$!: Observable<number[]>;
   loading: boolean = false;
 
   constructor(
@@ -45,17 +47,26 @@ export class CollectionComponent implements OnInit {
 
     this.walletService.checkIfWalletIsConnected();
 
-    this.tokenIds$ = combineLatest([this.onlyShowMine$, this.collection$]).pipe(
-      switchMap(x => {
-        const onlyMine = x[0];
-        const collection = x[1];
+    this.tokenIdsForWallet$ = this.collection$.pipe(
+      switchMap(collection => {
+        this.loading = true;
+        return collection.getTokensForWallet(this.currentAccount).pipe(
+          tap(() => this.loading = false)
+        );
+      }),
+      shareReplay(1)
+    );
+
+    this.tokenIdsForCollection$ = this.collection$.pipe(
+      switchMap(collection => of(Array.from(Array(collection.getCollectionSize()).keys())))
+    );
+
+    this.tokenIds$ = this.onlyShowMine$.pipe(
+      switchMap(onlyMine => {
         if(onlyMine && this.currentAccount) {
-          this.loading = true;
-          return collection.getTokensForWallet(this.currentAccount).pipe(
-            tap(() => this.loading = false)
-          );
+          return this.tokenIdsForWallet$;
         } else {
-          return of(Array.from(Array(collection.getCollectionSize()).keys()));
+          return this.tokenIdsForCollection$;
         }
       })
     )
