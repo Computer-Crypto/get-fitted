@@ -1,17 +1,48 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { Collection } from './base-collection';
 import { FitGroup } from './fit';
 
 export class BoredApeYachtClub extends Collection {
     
-    constructor(private http: HttpClient) {
+    constructor(http: HttpClient) {
         super(
+            http,
             "bored-ape-yacht-club",
             "Bored Ape Yacht Club", 
+            "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d",
             "/assets/collections/bored-ape-yacht-club/logo.png",
-            "",
-            []
+            [{
+                name: "Hat",
+                fits: [{
+                  name: "Baseball Hat",
+                  variants: [{
+                    name: "Alien Punk Things",
+                    url: "/assets/collections/bored-ape-yacht-club/fits/hats/apt_hat.png"
+                  },{
+                    name: "CSSC",
+                    url: "/assets/collections/bored-ape-yacht-club/fits/hats/ccsc_hat.png"
+                  },{
+                    name: "Bimah",
+                    url: "/assets/collections/bored-ape-yacht-club/fits/hats/bimah_hat.png"
+                  }]
+                }]
+            },{
+                name: "Shirt",
+                fits: [{
+                  name: "Hoodie",
+                  variants: [{
+                    name: "Alien Punk Things",
+                    url: "/assets/collections/bored-ape-yacht-club/fits/shirts/apt_hoodie.png"
+                  },{
+                    name: "CSSC",
+                    url: "/assets/collections/bored-ape-yacht-club/fits/shirts/ccsc_hoodie.png"
+                  },{
+                    name: "Bimah",
+                    url: "/assets/collections/bored-ape-yacht-club/fits/shirts/bimah_hoodie.png"
+                  }]
+                }]
+            }]
         );
     }
 
@@ -19,15 +50,8 @@ export class BoredApeYachtClub extends Collection {
         return `https://nftoutfits.blob.core.windows.net/bayc/images/${tokenId}.png`;
     }
 
-    getTokensForWallet(address: string): Observable<number[]> {
-        throw new Error('Method not implemented.');
-    }
 
     getCollectionSize(): number {
         return 10000;
-    }
-
-    getFits(): FitGroup[] {
-        throw new Error('Method not implemented.');
     }
 }

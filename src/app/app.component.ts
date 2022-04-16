@@ -1,3 +1,4 @@
+import { createAlchemyWeb3 } from '@alch/alchemy-web3';
 import { Component } from '@angular/core';
 import WalletService from './wallet.service';
 

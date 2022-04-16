@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ExternalProvider } from '@ethersproject/providers';
 import { base64 } from 'ethers/lib/utils';
-import { Observable, of, Subject } from 'rxjs';
+import { map, Observable, of, Subject } from 'rxjs';
 import contract from '../contract';
 import { Collection } from './base-collection';
 import { FitGroup } from './fit';
@@ -14,12 +14,13 @@ declare global {
 }
 
 export class AlienPunkThings extends Collection { 
-  constructor(private http: HttpClient) {
+  constructor(http: HttpClient) {
     super(
+      http,
       "alien-punk-things",
       "Alien Punk Things",
+      "0x5b98ab35514c1c91f33ba12e0778d53e1ebdb106",
       "/assets/collections/alien-punk-things/logo.png",
-      "https://alienpunkthingsprod.blob.core.windows.net/images/",
       [{
         name: "Hat",
         fits: [{
@@ -85,6 +86,15 @@ export class AlienPunkThings extends Collection {
             name:"Red",
             url:"/assets/collections/alien-punk-things/fits/shirts/apt-hoodie/red.png"
           }]
+        },{
+          name: "Blue Shirt",
+          variants: [{
+            name: "Blue Shirt",
+            url: "/assets/collections/alien-punk-things/fits/shirts/shirt.png"
+          },{
+            name: "Blue Shirt w/ APT Logo",
+            url: "/assets/collections/alien-punk-things/fits/shirts/apt_shirt.png"
+          }]
         }]
       }]
     );
@@ -93,9 +103,7 @@ export class AlienPunkThings extends Collection {
   getTokenImageUrl(tokenId: number): string {
     return `https://alienpunkthingsprod.blob.core.windows.net/images/${tokenId}.png`;
   }
-  getTokensForWallet(address: string): Observable<number[]> {
-    return this.http.get<number[]>(`${contract.apiUrl}/api/get-by-owner?address=${address}`);
-  }
+
   getCollectionSize(): number {
     return 8888;
   }

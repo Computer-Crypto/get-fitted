@@ -12,6 +12,9 @@
         <img src="/assets/loading.gif" />
     </div>
     <div *ngIf="tokenIds$ | async; let tokenIds">
+        <div *ngIf="!tokenIds.length">
+           <h3 class="text-center">You don't own any {{ collection.name }} NFTs</h3> 
+        </div>
         <div *ngIf="!loading">
             <div class="row">
                 <div class="col-xl-2 col-lg-3 col-md-4 col-6 mb-3 text-center" *ngFor="let tokenId of tokenIds | slice: (page-1) * pageSize : page * pageSize">
@@ -21,7 +24,7 @@
                     </a>
                 </div>
             </div>
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center" *ngIf="tokenIds.length">
                 <ngb-pagination [collectionSize]="tokenIds.length" [(page)]="page" [pageSize]="pageSize" [boundaryLinks]="true">
                     <ng-template ngbPaginationPages let-page let-pages="pages">
                         <li class="ngb-custom-pages-item" *ngIf="pages.length > 0">

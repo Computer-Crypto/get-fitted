@@ -1,23 +1,33 @@
-import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { map, Observable } from "rxjs";
 import { FitGroup } from "./fit";
 
 export abstract class Collection {
 
-    constructor(id:string, name:string, logo:string, baseImageUri:string, fitGroups:FitGroup[]) {
+    constructor(http: HttpClient, id:string, name:string, contractAddress:string, logo:string, fitGroups:FitGroup[]) {
         this.id = id;
         this.name = name;
         this.logo = logo;
-        this.baseImageUri = baseImageUri;
         this.fitGroups = fitGroups;
+        this.contractAddress = contractAddress;
+        this.http = http;
     }
 
     public id: string;
     public name: string;
     public logo: string;
-    public baseImageUri: string;
-    public fitGroups: FitGroup[]
+    public fitGroups: FitGroup[];
+    public contractAddress: string;
+    private http: HttpClient;
 
     abstract getTokenImageUrl(tokenId: number): string;
-    abstract getTokensForWallet(address: string): Observable<number[]>;
     abstract getCollectionSize(): number;
+    getTokensForWallet(address: string): Observable<number[]> {
+        return this.http.get<any>(`https://eth-mainnet.alchemyapi.io/v2/kQrt4dyEXtsBI-WO_nS_VqOOmBWDP_dH/getNFTs?owner=${address}&contractAddresses[]=${this.contractAddress}`)
+            .pipe(
+                map(result => {
+                    return result.ownedNfts.map((nft: { id: { tokenId: string; }; }) => parseInt(nft.id.tokenId));
+                })
+            );
+      }
 }

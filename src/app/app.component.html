@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto text-align-right">
         <a class="nav-link" routerLink="/collections">Collections</a>
-        <!-- <a class="nav-link" routerLink="/wallet">Wallet</a> -->
+        <a class="nav-link" target="_blank" href="https://discord.gg/5hyrXSff">Discord</a>
         <!-- <a class="nav-link" href="/fits">Fits</a> -->
         <a class="btn btn-info ms-lg-4" (click)="connectWallet()" *ngIf="!currentAccount">Connect Wallet</a>
         <a class="btn btn-info ms-lg-4" (click)="connectWallet()" *ngIf="currentAccount">{{currentAccount.substring(0, 8)}}</a>
@@ -26,7 +26,7 @@
   </p>
   <p>
     <a href="https://twitter.com/AlienPunkThings" class="text-decoration-none">Twitter</a> 
-    | <a href="" class="text-decoration-none">Discord</a> 
+    | <a href="https://discord.gg/5hyrXSff" target="_blank" class="text-decoration-none">Discord</a> 
     | <a href="https://github.com/Computer-Crypto/get-fitted" class="text-decoration-none">GitHub</a>
   </p>
 </footer>

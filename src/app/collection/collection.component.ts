@@ -19,7 +19,7 @@ export class CollectionComponent implements OnInit {
   page: number = 1;
   pageSize: number = 24;
   lookupTokenId: string = "";
-  onlyShowMine: boolean = true;
+  onlyShowMine: boolean = false;
   currentAccount: string = "";
   onlyShowMine$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   tokenIds$: Observable<number[]> = of([]);
@@ -51,7 +51,8 @@ export class CollectionComponent implements OnInit {
       switchMap(collection => {
         this.loading = true;
         return collection.getTokensForWallet(this.currentAccount).pipe(
-          tap(() => this.loading = false)
+          tap(() => this.loading = false),
+          map(tokenIds => tokenIds.sort())
         );
       }),
       shareReplay(1)
