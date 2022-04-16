@@ -23,7 +23,7 @@ export abstract class Collection {
     abstract getTokenImageUrl(tokenId: number): string;
     abstract getCollectionSize(): number;
     getTokensForWallet(address: string): Observable<number[]> {
-        return this.http.get<any>(`https://eth-mainnet.alchemyapi.io/v2/kQrt4dyEXtsBI-WO_nS_VqOOmBWDP_dH/getNFTs?owner=${address}&contractAddresses[]=${this.contractAddress}`)
+        return this.http.get<any>(`https://eth-mainnet.alchemyapi.io/v2/o8CAzFq7u_LunKpAVlJ-bSZFPCfYD3-i/getNFTs?owner=${address}&contractAddresses[]=${this.contractAddress}`)
             .pipe(
                 map(result => {
                     return result.ownedNfts.map((nft: { id: { tokenId: string; }; }) => parseInt(nft.id.tokenId));
