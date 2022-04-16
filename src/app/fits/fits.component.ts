@@ -47,7 +47,9 @@ export class FitsComponent implements OnInit {
   }
 
   onFitUrlChange(event: FitUrlChangedEvent) {
-    this.selectedFits[event.fitGroupName] = event.url;
-    this.fitImageUrls$.next(Object.values(this.selectedFits));
+    this.selectedFits[event.fitGroupName] = event;
+    const fits = Object.values(this.selectedFits) as FitUrlChangedEvent[];
+    const urls = fits.sort((a, b) => (a.order > b.order) ? 1 : -1).map(a => a.url);
+    this.fitImageUrls$.next(urls);
   }
 }

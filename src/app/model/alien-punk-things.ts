@@ -23,6 +23,7 @@ export class AlienPunkThings extends Collection {
       "/assets/collections/alien-punk-things/logo.png",
       [{
         name: "Hat",
+        order: 0,
         fits: [{
           name: "Cowboy Hat",
           variants: [{
@@ -50,6 +51,7 @@ export class AlienPunkThings extends Collection {
         }]
       }, {
         name: "Shirt",
+        order: 1,
         fits: [{
           name: "Pink Suit",
           variants: [{
@@ -96,8 +98,29 @@ export class AlienPunkThings extends Collection {
             url: "/assets/collections/alien-punk-things/fits/shirts/apt_shirt.png"
           }]
         }]
-      }]
-    );
+      }, {
+        name: "Accessories",
+        order: 3,
+        fits: [{
+          name: "Smoking",
+          variants: [{
+            name: "Bong with smoke",
+            url: "/assets/collections/alien-punk-things/fits/accessories/smoking/bong1.png"
+          },{
+            name: "Bong with smoke screen",
+            url: "/assets/collections/alien-punk-things/fits/accessories/smoking/bong3.png"
+          },{
+            name: "Bong with arms",
+            url: "/assets/collections/alien-punk-things/fits/accessories/smoking/bong2.png"
+          },{
+            name: "Joint",
+            url: "/assets/collections/alien-punk-things/fits/accessories/smoking/joint.png"
+          },{
+            name: "Smoke",
+            url: "/assets/collections/alien-punk-things/fits/accessories/smoking/smoke.png"
+          }]
+        }]
+      }])
   }
   
   getTokenImageUrl(tokenId: number): string {

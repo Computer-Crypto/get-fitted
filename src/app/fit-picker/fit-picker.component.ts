@@ -4,6 +4,7 @@ import { Fit, FitGroup, Variant } from '../model/fit';
 export class FitUrlChangedEvent {
   public url!: string;
   public fitGroupName!: string;
+  public order!:number;
 }
 
 @Component({
@@ -33,12 +34,14 @@ export class FitPickerComponent implements OnInit {
       this.selectedVariant = this.selectedFit?.variants[0];
       this.fitUrlChanged.emit({
         url: this.selectedVariant.url,
-        fitGroupName: this.fitGroup.name
+        fitGroupName: this.fitGroup.name,
+        order: this.fitGroup.order
       });
     } else {
       this.fitUrlChanged.emit({
         url: '',
-        fitGroupName: this.fitGroup.name
+        fitGroupName: this.fitGroup.name,
+        order: -1
       })
     }
   }
@@ -47,7 +50,8 @@ export class FitPickerComponent implements OnInit {
     if(this.selectedVariant) {
       this.fitUrlChanged.emit({
         url: this.selectedVariant.url,
-        fitGroupName: this.fitGroup.name
+        fitGroupName: this.fitGroup.name,
+        order: this.fitGroup.order
       });
     }
   }

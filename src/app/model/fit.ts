@@ -1,6 +1,7 @@
 export class FitGroup {
     name!: string;
-    fits!: Fit[]
+    fits!: Fit[];
+    order!: number;
 }
 
 export class Fit {

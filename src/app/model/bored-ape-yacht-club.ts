@@ -14,6 +14,7 @@ export class BoredApeYachtClub extends Collection {
             "/assets/collections/bored-ape-yacht-club/logo.png",
             [{
                 name: "Hat",
+                order: 0,
                 fits: [{
                   name: "Baseball Hat",
                   variants: [{
@@ -29,6 +30,7 @@ export class BoredApeYachtClub extends Collection {
                 }]
             },{
                 name: "Shirt",
+                order: 1,
                 fits: [{
                   name: "Hoodie",
                   variants: [{
