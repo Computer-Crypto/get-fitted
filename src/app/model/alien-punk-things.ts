@@ -91,12 +91,12 @@ export class AlienPunkThings extends Collection {
         },{
           name: "Blue Shirt",
           variants: [{
-            name: "Blue Shirt",
-            url: "/assets/collections/alien-punk-things/fits/shirts/shirt.png"
-          },{
-            name: "Blue Shirt w/ APT Logo",
+            name: "With APT Patch",
             url: "/assets/collections/alien-punk-things/fits/shirts/apt_shirt.png"
-          }]
+          },{
+            name: "Without APT Patch",
+            url: "/assets/collections/alien-punk-things/fits/shirts/shirt.png"
+          },]
         }]
       }, {
         name: "Accessories",
