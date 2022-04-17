@@ -23,7 +23,7 @@ export class AlienPunkThings extends Collection {
       "/assets/collections/alien-punk-things/logo.png",
       [{
         name: "Hat",
-        order: 0,
+        order: 1,
         fits: [{
           name: "Cowboy Hat",
           variants: [{
@@ -48,10 +48,28 @@ export class AlienPunkThings extends Collection {
             name: "Drink Hat",
             url: "/assets/collections/alien-punk-things/fits/hats/drink-hat.png"
           }]
+        },{
+          name: "Karate Headband",
+          variants: [{
+            name: "Karate Headband",
+            url: "/assets/collections/alien-punk-things/fits/hats/karate-headband.png"
+          }]
+        },{
+          name: "Leaf Mask",
+          variants: [{
+            name: "Leaf Mask",
+            url: "/assets/collections/alien-punk-things/fits/hats/leaf-mask.png"
+          }]
+        },{
+          name: "Bong Mask",
+          variants: [{
+            name: "Bong Mask",
+            url: "/assets/collections/alien-punk-things/fits/hats/bong-mask.png"
+          }]
         }]
       }, {
         name: "Shirt",
-        order: 1,
+        order: 0,
         fits: [{
           name: "Pink Suit",
           variants: [{
@@ -97,6 +115,24 @@ export class AlienPunkThings extends Collection {
             name: "Without APT Patch",
             url: "/assets/collections/alien-punk-things/fits/shirts/shirt.png"
           },]
+        },{
+          name: "Raptor Jacket",
+          variants: [{
+            name: "Raptor Jacket",
+            url: "/assets/collections/alien-punk-things/fits/shirts/raptor-jacket.png"
+          }]
+        },{
+          name: "Gi",
+          variants: [{
+            name: "Gi",
+            url: "/assets/collections/alien-punk-things/fits/shirts/gi.png"
+          }]
+        },{
+          name: "420 Cosplay",
+          variants: [{
+            name: "420 Cosplay",
+            url: "/assets/collections/alien-punk-things/fits/shirts/420-cosplay.png"
+          }]
         }]
       }, {
         name: "Accessories",
@@ -118,6 +154,16 @@ export class AlienPunkThings extends Collection {
           },{
             name: "Smoke",
             url: "/assets/collections/alien-punk-things/fits/accessories/smoking/smoke.png"
+          }]
+        }]
+      },{
+        name: "Eyes",
+        order: 0,
+        fits: [{
+          name: "Stoner",
+          variants: [{
+            name: "Regular",
+            url: "/assets/collections/alien-punk-things/fits/eyes/stoner/regular.png"
           }]
         }]
       }])
