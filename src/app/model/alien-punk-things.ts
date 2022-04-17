@@ -164,6 +164,18 @@ export class AlienPunkThings extends Collection {
           variants: [{
             name: "Regular",
             url: "/assets/collections/alien-punk-things/fits/eyes/stoner/regular.png"
+          },{
+            name: "Cyclops",
+            url: "/assets/collections/alien-punk-things/fits/eyes/stoner/cyclops.png"
+          },{
+            name: "Doodle Eyes",
+            url: "/assets/collections/alien-punk-things/fits/eyes/stoner/doodle.png"
+          },{
+            name: "Six Eyes",
+            url: "/assets/collections/alien-punk-things/fits/eyes/stoner/6eyes.png"
+          },{
+            name: "Noun Glasses",
+            url: "/assets/collections/alien-punk-things/fits/eyes/stoner/noun-glasses.png"
           }]
         }]
       }])
