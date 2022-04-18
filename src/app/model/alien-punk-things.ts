@@ -147,7 +147,7 @@ export class AlienPunkThings extends Collection {
             url: "/assets/collections/alien-punk-things/fits/accessories/smoking/bong3.png"
           },{
             name: "Bong with arms",
-            url: "/assets/collections/alien-punk-things/fits/accessories/smoking/bong2.png"
+            url: "/assets/collections/alien-punk-things/fits/accessories/smoking/bong4.png"
           },{
             name: "Joint",
             url: "/assets/collections/alien-punk-things/fits/accessories/smoking/joint.png"
