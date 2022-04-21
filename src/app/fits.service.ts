@@ -30,7 +30,7 @@ export class FitsService {
             const imageUrl = fitImageUrls[x];
             if(imageUrl) {
               const image = await loadImage(imageUrl);
-              ctx?.drawImage(image, 0, 0);
+              ctx?.drawImage(image, 0, 0, nftImage.width, nftImage.height);
             }
           }
         }

@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CollectionComponent } from './collection/collection.component';
 import { FitPickerComponent } from './fit-picker/fit-picker.component';
+import { OrderModule } from 'ngx-order-pipe';
+import { BannerComponent } from './banner/banner.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +21,16 @@ import { FitPickerComponent } from './fit-picker/fit-picker.component';
     FitsComponent,
     HomeComponent,
     CollectionComponent,
-    FitPickerComponent
+    FitPickerComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

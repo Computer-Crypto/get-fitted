@@ -1,12 +1,15 @@
 <div *ngIf="collection$ | async; let collection">
+    <app-banner [collection]="collection"></app-banner>
     <div class="row">
         <div class="col-lg-4 col-md-6">
             <img src="{{(image$ | async)}}" class="img-fluid border border-3 border-primary rounded-3" />
         </div>
-        <div class="col-lg-4 col-md-6 mt-2 mt-md-0">
+        <div class="col-lg-8 col-md-6 mt-2 mt-md-0">
             <h4> {{collection.name}} #{{tokenId}} </h4>
-            <div *ngFor="let group of collection.fitGroups">
-                <app-fit-picker [fitGroup]="group" (fitUrlChanged)="onFitUrlChange($event)"></app-fit-picker>
+            <div class="row">
+                <div *ngFor="let group of collection.fitGroups | orderBy: 'name'" class="col-md-6">
+                    <app-fit-picker [fitGroup]="group" (fitUrlChanged)="onFitUrlChange($event)"></app-fit-picker>
+                </div>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, combineLatest, map, Observable, of, shareReplay, switchMap, tap } from 'rxjs';
 import { Collection } from '../model/base-collection';
@@ -33,6 +33,10 @@ export class CollectionComponent implements OnInit {
     private router: Router,
     private walletService: WalletService
   ) { }
+
+  pageChanged(): void {
+    localStorage.setItem(`${this.collectionId}-page`, this.page.toString());
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -76,6 +80,8 @@ export class CollectionComponent implements OnInit {
       this.onlyShowMine = true;
       this.onlyShowMine$.next(this.onlyShowMine);
     }
+
+    this.page = parseInt(localStorage.getItem(`${this.collectionId}-page`) ?? "1");
   }
 
   formatInput(input: HTMLInputElement) {

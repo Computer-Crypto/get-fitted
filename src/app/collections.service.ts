@@ -4,6 +4,7 @@ import { map, Observable, of } from 'rxjs';
 import { AlienPunkThings } from './model/alien-punk-things';
 import { Collection } from './model/base-collection';
 import { BoredApeYachtClub } from './model/bored-ape-yacht-club';
+import { Mfers } from './model/mfers';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,9 @@ export class CollectionsService {
   // May need to move it to a backeend API at some point
   getCollections(): Observable<Collection[]> {
     return of([
+      new AlienPunkThings(this.http),
       new BoredApeYachtClub(this.http),
-      new AlienPunkThings(this.http)
+      new Mfers(this.http)
     ]);
   }
 

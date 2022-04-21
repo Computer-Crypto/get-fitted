@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, Subject } from 'rxjs';
 import { Collection } from './base-collection';
-import { FitGroup } from './fit';
 
 export class BoredApeYachtClub extends Collection {
     
@@ -37,7 +35,7 @@ export class BoredApeYachtClub extends Collection {
                     name: "Alien Punk Things",
                     url: "/assets/collections/bored-ape-yacht-club/fits/shirts/apt_hoodie.png"
                   },{
-                    name: "CSSC",
+                    name: "Crypto Celestials (CCSC)",
                     url: "/assets/collections/bored-ape-yacht-club/fits/shirts/ccsc_hoodie.png"
                   },{
                     name: "Bimah",
@@ -52,6 +50,9 @@ export class BoredApeYachtClub extends Collection {
         return `https://nftoutfits.blob.core.windows.net/bayc/images/${tokenId}.png`;
     }
 
+    getSmallTokenImageUrl(tokenId: number): string {
+      return `https://nftoutfits.blob.core.windows.net/bayc/small/${tokenId}.png`;
+    }
 
     getCollectionSize(): number {
         return 10000;

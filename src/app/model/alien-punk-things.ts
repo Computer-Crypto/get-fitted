@@ -1,11 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { ExternalProvider } from '@ethersproject/providers';
-import { base64 } from 'ethers/lib/utils';
-import { map, Observable, of, Subject } from 'rxjs';
-import contract from '../contract';
 import { Collection } from './base-collection';
-import { FitGroup } from './fit';
 
 declare global {
   interface Window {
@@ -22,6 +17,28 @@ export class AlienPunkThings extends Collection {
       "0x5b98ab35514c1c91f33ba12e0778d53e1ebdb106",
       "/assets/collections/alien-punk-things/logo.png",
       [{
+        name: "Hair",
+        order: 0,
+        fits: [{
+          name: "Fire Hair",
+          variants: [{
+            name: "Fire Hair",
+            url: "/assets/collections/alien-punk-things/fits/hats/fire-hair.png"
+          }]
+        },{
+          name: "Mullet",
+          variants: [{
+            name: "Mullet",
+            url: "/assets/collections/alien-punk-things/fits/hats/mullet.png"
+          }]
+        },{
+          name: "Rat Tail",
+          variants: [{
+            name: "Rat Tail",
+            url: "/assets/collections/alien-punk-things/fits/hats/rat-tail.png"
+          }]
+        }]
+      },{
         name: "Hat",
         order: 1,
         fits: [{
@@ -65,6 +82,30 @@ export class AlienPunkThings extends Collection {
           variants: [{
             name: "Bong Mask",
             url: "/assets/collections/alien-punk-things/fits/hats/bong-mask.png"
+          }]
+        },{
+          name: "Nardwaur",
+          variants: [{
+            name: "Nardwaur",
+            url: "/assets/collections/alien-punk-things/fits/hats/nardwaur.png"
+          }]
+        },{
+          name: "Raiders Hat",
+          variants: [{
+            name: "Raiders Hat",
+            url: "/assets/collections/alien-punk-things/fits/hats/raiders-hat.png"
+          }]
+        },{
+          name: "ICP",
+          variants: [{
+            name: "ICP",
+            url: "/assets/collections/alien-punk-things/fits/hats/icp.png"
+          }]
+        },{
+          name: "MF Doom Mask",
+          variants: [{
+            name: "MF Doom Mask",
+            url: "/assets/collections/alien-punk-things/fits/hats/mf-doom-mask.png"
           }]
         }]
       }, {
@@ -133,6 +174,12 @@ export class AlienPunkThings extends Collection {
             name: "420 Cosplay",
             url: "/assets/collections/alien-punk-things/fits/shirts/420-cosplay.png"
           }]
+        },{
+          name: "NWA Jacket",
+          variants: [{
+            name: "NWA Jacket",
+            url: "/assets/collections/alien-punk-things/fits/shirts/nwa-jacket.png"
+          }]
         }]
       }, {
         name: "Accessories",
@@ -156,13 +203,14 @@ export class AlienPunkThings extends Collection {
             url: "/assets/collections/alien-punk-things/fits/accessories/smoking/smoke.png"
           }]
         }]
-      },{
+      },
+      {
         name: "Eyes",
         order: 0,
         fits: [{
           name: "Stoner",
           variants: [{
-            name: "Regular",
+            name: "Blood Shot",
             url: "/assets/collections/alien-punk-things/fits/eyes/stoner/regular.png"
           },{
             name: "Cyclops",
@@ -177,11 +225,21 @@ export class AlienPunkThings extends Collection {
             name: "Noun Glasses",
             url: "/assets/collections/alien-punk-things/fits/eyes/stoner/noun-glasses.png"
           }]
+        },{
+          name: "420 Glasses",
+          variants: [{
+            name: "420 Glasses",
+            url: "/assets/collections/alien-punk-things/fits/eyes/glasses/420-glasses.png"
+          }]
         }]
       }])
   }
   
   getTokenImageUrl(tokenId: number): string {
+    return `https://alienpunkthingsprod.blob.core.windows.net/images/${tokenId}.png`;
+  }
+
+  getSmallTokenImageUrl(tokenId: number): string {
     return `https://alienpunkthingsprod.blob.core.windows.net/images/${tokenId}.png`;
   }
 
