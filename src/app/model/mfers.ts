@@ -17,6 +17,16 @@ export class Mfers extends Collection {
       "0x79fcdef22feed20eddacbb2587640e45491b757f",
       "/assets/collections/mfers/logo.png",
       [{
+        name: "Clothing",
+        order: 1,
+        fits: [{
+          name: "Goochi Hoodie",
+          variants: [{
+            name: "Goochi Hoodie",
+            url: "/assets/collections/mfers/fits/clothing/goochi-hoodie.png"
+          }]
+        }]
+      }, {
         name: "Head",
         order: 1,
         fits: [{
